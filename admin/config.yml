@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: senin-github-kullaniciadin/peoplefilms   # BURAYA KENDİ GİTHUB KULLANICI ADIN VE REPO ADINI YAZ
   branch: main
 
 media_folder: "images/uploads"
@@ -7,9 +8,9 @@ public_folder: "/images/uploads"
 
 collections:
   - name: "videos"
-    label: "Videolar"
+    label: "Videos"
     folder: "content/videos"
     create: true
     fields:
-      - {label: "Proje Adı", name: "title", widget: "string"}
+      - {label: "Title", name: "title", widget: "string"}
       - {label: "Vimeo Video ID", name: "vimeo_id", widget: "string", hint: "Örn: 1196732175"}
