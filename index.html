@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>people films</title>
+    <title>People Film</title>
+    <!-- Netlify CMS (Decap CMS) Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <style>
         /* --- RESET --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -113,16 +115,18 @@
             .logo { font-size: 1rem; }
             nav a { margin-left: 15px; font-size: 0.75rem; }
             .hero { padding: 60px 20px; }
-            .hero h1 { font-size: 1.4rem; line-height: 1.5; }
+            .hero h1 { font-size: 1.2rem; line-height: 1.5; }
             .grid { padding: 0 20px 60px 20px; grid-template-columns: 1fr; gap: 30px; }
             .video-container { box-shadow: none; }
         }
     </style>
+    <!-- Statik sitelerde CMS dosyalarını okumak için js-yaml kütüphanesi -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
 </head>
 <body>
 
     <header>
-        <a href="#" class="logo">people films</a>
+        <a href="#" class="logo">People Film</a>
         <nav>
             <a href="#reel">Reel</a>
             <a href="#about">About</a>
@@ -131,35 +135,60 @@
     </header>
 
     <section class="hero">
-        <h1>specialize in narrative but produce everything.</h1>
+        <h1>Rooted in narrative depth, executed with full-scale production precision—from human-driven documentaries to commercial visual worlds.</h1>
     </section>
 
-    <div class="grid">
-        <!-- Video 1 -->
-        <div class="video-card">
-            <div class="video-container">
-                <iframe src="https://player.vimeo.com/video/1196732175?h=bc12345678&title=0&byline=0&portrait=0" allowfullscreen></iframe>
-            </div>
-        </div>
-
-        <!-- Video 2 -->
-        <div class="video-card">
-            <div class="video-container">
-                <iframe src="https://player.vimeo.com/video/1218850577?h=de87654321&title=0&byline=0&portrait=0" allowfullscreen></iframe>
-            </div>
-        </div>
-
-        <!-- Video 3 -->
-        <div class="video-card">
-            <div class="video-container">
-                <iframe src="https://player.vimeo.com/video/1196732175?h=bc12345678&title=0&byline=0&portrait=0" allowfullscreen></iframe>
-            </div>
-        </div>
+    <!-- Videoların otomatik yükleneceği alan -->
+    <div class="grid" id="video-grid">
+        <!-- Panelden eklenen videolar buraya otomatik gelecek -->
     </div>
 
     <footer>
         &copy; 2026 People Film. All rights reserved.
     </footer>
 
+    <script>
+        // Netlify CMS klasöründeki dosyaları tarayıp ekrana basan script
+        async function loadVideos() {
+            const grid = document.getElementById('video-grid');
+            
+            try {
+                // GitHub üzerindeki content/videos klasörünün içeriğini çeker
+                const response = await fetch('https://api.github.com/repos/nuriyilmazer/peoplefilms/contents/content/videos');
+                if (!response.ok) return;
+                
+                const files = await response.json();
+                
+                for (let file of files) {
+                    if (file.name.endsWith('.md')) {
+                        const fileRes = await fetch(file.download_url);
+                        const markdownText = await fileRes.text();
+                        
+                        // Markdown ön yüzündeki (frontmatter) verileri ayıklar
+                        const parts = markdownText.split('---');
+                        if (parts.length >= 3) {
+                            const frontmatter = jsyaml.load(parts[1]);
+                            const vimeoId = frontmatter.vimeo_id;
+                            
+                            if (vimeoId) {
+                                const card = document.createElement('div');
+                                card.className = 'video-card';
+                                card.innerHTML = `
+                                    <div class="video-container">
+                                        <iframe src="https://player.vimeo.com/video/${vimeoId}?h=bc12345678&title=0&byline=0&portrait=0" allowfullscreen></iframe>
+                                    </div>
+                                `;
+                                grid.appendChild(card);
+                            }
+                        }
+                    }
+                }
+            } catch (error) {
+                console.log("Videolar yüklenirken hata oluştu:", error);
+            }
+        }
+
+        loadVideos();
+    </script>
 </body>
 </html>
