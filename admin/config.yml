@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: senin-github-kullaniciadin/peoplefilms   # BURAYA KENDİ GİTHUB KULLANICI ADIN VE REPO ADINI YAZ
+  name: git-gateway
   branch: main
 
 media_folder: "images/uploads"
