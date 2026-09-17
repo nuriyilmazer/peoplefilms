@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>People Film</title>
-    <!-- Netlify CMS (Decap CMS) Netlify Identity Widget -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <style>
         /* --- RESET --- */
@@ -120,7 +119,6 @@
             .video-container { box-shadow: none; }
         }
     </style>
-    <!-- Statik sitelerde CMS dosyalarını okumak için js-yaml kütüphanesi -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
 </head>
 <body>
@@ -138,9 +136,8 @@
         <h1>Rooted in narrative depth, executed with full-scale production precision—from human-driven documentaries to commercial visual worlds.</h1>
     </section>
 
-    <!-- Videoların otomatik yükleneceği alan -->
     <div class="grid" id="video-grid">
-        <!-- Panelden eklenen videolar buraya otomatik gelecek -->
+        <!-- Otomatik yüklenecek -->
     </div>
 
     <footer>
@@ -148,12 +145,19 @@
     </footer>
 
     <script>
-        // Netlify CMS klasöründeki dosyaları tarayıp ekrana basan script
+        // URL'den Vimeo ID'sini otomatik ayıklayan akıllı fonksiyon
+        function extractVimeoId(url) {
+            if (!url) return null;
+            const regExp = /(?:vimeoook?:\/\/)?(?:www\.)?vimeo\.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)/;
+            const match = url.match(/(\d+)(?!.*\d)/); // URL'deki son rakam dizisini (ID) yakalar
+            return match ? match[1] : null;
+        }
+
         async function loadVideos() {
             const grid = document.getElementById('video-grid');
             
             try {
-                // GitHub üzerindeki content/videos klasörünün içeriğini çeker
+                // Buradaki 'nuriyilmazer/peoplefilms' kısmını kendi depo adınla değiştirdiğinden emin ol
                 const response = await fetch('https://api.github.com/repos/nuriyilmazer/peoplefilms/contents/content/videos');
                 if (!response.ok) return;
                 
@@ -164,11 +168,11 @@
                         const fileRes = await fetch(file.download_url);
                         const markdownText = await fileRes.text();
                         
-                        // Markdown ön yüzündeki (frontmatter) verileri ayıklar
                         const parts = markdownText.split('---');
                         if (parts.length >= 3) {
                             const frontmatter = jsyaml.load(parts[1]);
-                            const vimeoId = frontmatter.vimeo_id;
+                            const vimeoUrl = frontmatter.vimeo_url;
+                            const vimeoId = extractVimeoId(vimeoUrl);
                             
                             if (vimeoId) {
                                 const card = document.createElement('div');
