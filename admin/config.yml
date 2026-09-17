@@ -6,9 +6,9 @@ media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-  - name: "videos"
-    label: "Videos"
-    folder: "content/videos"
+  - name: "works"
+    label: "Works"
+    folder: "content/works"
     create: true
     fields:
       - {label: "Title", name: "title", widget: "string"}
