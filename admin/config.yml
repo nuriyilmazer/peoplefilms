@@ -1,0 +1,15 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "videos"
+    label: "Videolar"
+    folder: "content/videos"
+    create: true
+    fields:
+      - {label: "Proje Adı", name: "title", widget: "string"}
+      - {label: "Vimeo Video ID", name: "vimeo_id", widget: "string", hint: "Örn: 1196732175"}
