@@ -12,4 +12,4 @@ collections:
     create: true
     fields:
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Vimeo Video ID", name: "vimeo_id", widget: "string", hint: "Örn: 1196732175"}
+      - {label: "Vimeo URL", name: "vimeo_url", widget: "string", hint: "Örn: https://vimeo.com/1196732175"}
