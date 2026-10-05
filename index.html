@@ -9,7 +9,9 @@
 
     <style>
 
-        /* --- RESET & BASE --- */
+        /* =========================
+           RESET
+        ========================= */
 
         * {
             margin: 0;
@@ -18,7 +20,7 @@
         }
 
         body {
-            background-color: #0b0b0b;
+            background: #0b0b0b;
             color: #f4f4f4;
 
             font-family:
@@ -35,7 +37,9 @@
         }
 
 
-        /* --- HEADER --- */
+        /* =========================
+           HEADER
+        ========================= */
 
         header {
             display: flex;
@@ -46,7 +50,7 @@
 
             border-bottom: 1px solid #1a1a1a;
 
-            background-color: #0b0b0b;
+            background: #0b0b0b;
         }
 
         .logo {
@@ -67,10 +71,10 @@
 
             font-size: 0.85rem;
 
-            transition: color 0.3s;
-
             text-transform: uppercase;
             letter-spacing: 1px;
+
+            transition: color 0.3s;
         }
 
         nav a:hover {
@@ -78,12 +82,14 @@
         }
 
 
-        /* --- HERO --- */
+        /* =========================
+           HERO
+        ========================= */
 
         .hero {
             text-align: center;
 
-            padding: 100px 20px 80px 20px;
+            padding: 100px 20px 80px;
 
             max-width: 900px;
             margin: 0 auto;
@@ -91,27 +97,31 @@
 
         .hero h1 {
             font-size: 1.4rem;
+
             font-weight: 300;
 
             line-height: 1.6;
+
             letter-spacing: -0.3px;
 
             color: #e0e0e0;
         }
 
 
-        /* --- VIDEO GRID --- */
+        /* =========================
+           GRID
+        ========================= */
 
         .grid {
             display: grid;
 
             grid-template-columns:
-                repeat(auto-fit, minmax(400px, 1fr));
+                repeat(3, minmax(0, 1fr));
 
             gap: 40px;
 
             padding:
-                0 50px 100px 50px;
+                0 50px 100px;
 
             max-width: 1600px;
 
@@ -119,22 +129,27 @@
         }
 
 
-        /* --- VIDEO CARD --- */
+        /* =========================
+           VIDEO CARD
+        ========================= */
 
         .video-card {
-            background: transparent;
-
-            overflow: hidden;
-
             width: 100%;
 
             min-width: 0;
         }
 
 
-        /* --- VIDEO CONTAINER --- */
+        /* =========================
+           MEDIA BOX
 
-        .video-container {
+           IMPORTANT:
+           EVERY SINGLE CARD
+           HAS EXACTLY THE SAME
+           16:9 DIMENSIONS
+        ========================= */
+
+        .media-box {
             position: relative;
 
             width: 100%;
@@ -145,115 +160,98 @@
 
             background: #111;
 
-            box-shadow:
-                0 10px 30px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
         }
 
 
-        /* --- VIMEO --- */
+        /* =========================
+           THUMBNAIL
+        ========================= */
 
-        .video-container iframe {
+        .thumbnail {
             position: absolute;
 
-            top: 0;
-            left: 0;
-
-            width: 100%;
-            height: 100%;
-
-            border: 0;
-        }
-
-
-        /* --- INSTAGRAM CUSTOM THUMBNAIL --- */
-
-        .custom-thumb-link {
-            display: block;
-
-            width: 100%;
-
-            text-decoration: none;
-
-            overflow: hidden;
-        }
-
-        .thumb-container {
-            position: relative;
-
-            width: 100%;
-
-            background-color: #111;
-        }
-
-        .thumb-container img {
-            position: absolute;
-
-            top: 0;
-            left: 0;
+            inset: 0;
 
             width: 100%;
             height: 100%;
 
             object-fit: cover;
 
+            display: block;
+
             transition:
-                transform 0.5s ease,
-                filter 0.5s ease;
-        }
-
-        .thumb-container:hover img {
-            transform: scale(1.03);
-
-            filter: brightness(0.8);
+                transform 0.6s ease,
+                filter 0.4s ease;
         }
 
 
-        /* --- INSTAGRAM HOVER --- */
+        /* =========================
+           HOVER
+        ========================= */
 
-        .play-overlay {
+        .media-box:hover .thumbnail {
+            transform: scale(1.025);
+
+            filter: brightness(0.65);
+        }
+
+
+        /* =========================
+           WATCH TEXT
+        ========================= */
+
+        .watch {
             position: absolute;
 
-            top: 0;
-            left: 0;
-
-            width: 100%;
-            height: 100%;
+            inset: 0;
 
             display: flex;
 
             align-items: center;
             justify-content: center;
 
-            background:
-                rgba(0, 0, 0, 0.3);
+            color: white;
 
-            opacity: 0;
-
-            transition:
-                opacity 0.3s ease;
-        }
-
-        .thumb-container:hover .play-overlay {
-            opacity: 1;
-        }
-
-        .play-overlay span {
-            color: #fff;
-
-            font-size: 0.9rem;
+            font-size: 0.8rem;
 
             letter-spacing: 2px;
 
             text-transform: uppercase;
 
-            border-bottom:
-                1px solid #fff;
+            opacity: 0;
 
-            padding-bottom: 4px;
+            transition: opacity 0.3s ease;
+
+            pointer-events: none;
+        }
+
+        .media-box:hover .watch {
+            opacity: 1;
         }
 
 
-        /* --- FOOTER --- */
+        /* =========================
+           VIMEO PLAYER
+        ========================= */
+
+        .media-box iframe {
+            position: absolute;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            border: 0;
+
+            z-index: 5;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
             text-align: center;
@@ -264,16 +262,31 @@
 
             font-size: 0.8rem;
 
-            border-top:
-                1px solid #1a1a1a;
+            border-top: 1px solid #1a1a1a;
 
-            background-color: #090909;
+            background: #090909;
 
             letter-spacing: 0.5px;
         }
 
 
-        /* --- MOBILE --- */
+        /* =========================
+           TABLET
+        ========================= */
+
+        @media(max-width: 1100px) {
+
+            .grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
 
         @media(max-width: 768px) {
 
@@ -288,31 +301,24 @@
             nav a {
                 margin-left: 15px;
 
-                font-size: 0.75rem;
+                font-size: 0.7rem;
             }
 
             .hero {
-                padding:
-                    60px 20px;
+                padding: 60px 20px;
             }
 
             .hero h1 {
                 font-size: 1.2rem;
-
-                line-height: 1.5;
             }
 
             .grid {
-                padding:
-                    0 20px 60px 20px;
-
                 grid-template-columns: 1fr;
 
-                gap: 30px;
-            }
+                padding:
+                    0 20px 60px;
 
-            .video-container {
-                box-shadow: none;
+                gap: 25px;
             }
 
         }
@@ -324,7 +330,9 @@
 <body>
 
 
-    <!-- HEADER -->
+    <!-- =========================
+         HEADER
+    ========================== -->
 
     <header>
 
@@ -352,7 +360,9 @@
 
 
 
-    <!-- HERO -->
+    <!-- =========================
+         HERO
+    ========================== -->
 
     <section class="hero">
 
@@ -364,22 +374,31 @@
 
 
 
-    <!-- VIDEO GRID -->
+    <!-- =========================
+         WORK
+    ========================== -->
 
     <div class="grid" id="reel">
 
 
-        <!-- VIDEO 1 -->
+        <!-- =====================
+             01 — FUT / RISE ABOVE
+        ====================== -->
 
         <div class="video-card">
 
-            <div class="video-container">
+            <div
+                class="media-box vimeo-video"
+                data-video="1229333256">
 
-                <iframe
-                    src="https://player.vimeo.com/video/1229333256?title=0&byline=0&portrait=0"
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
+                <img
+                    class="thumbnail"
+                    src="https://vumbnail.com/1229333256.jpg"
+                    alt="Rise Above">
+
+                <div class="watch">
+                    Watch
+                </div>
 
             </div>
 
@@ -387,17 +406,24 @@
 
 
 
-        <!-- VIDEO 2 -->
+        <!-- =====================
+             02 — RED BULL
+        ====================== -->
 
         <div class="video-card">
 
-            <div class="video-container">
+            <div
+                class="media-box vimeo-video"
+                data-video="512495175">
 
-                <iframe
-                    src="https://player.vimeo.com/video/512495175?title=0&byline=0&portrait=0"
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
+                <img
+                    class="thumbnail"
+                    src="https://vumbnail.com/512495175.jpg"
+                    alt="Red Bull">
+
+                <div class="watch">
+                    Watch
+                </div>
 
             </div>
 
@@ -405,28 +431,26 @@
 
 
 
-        <!-- INSTAGRAM / MESSI -->
+        <!-- =====================
+             03 — MESSI / INSTAGRAM
+        ====================== -->
 
         <div class="video-card">
 
             <a
                 href="https://www.instagram.com/reel/Co6tPhCOl55/?igsh=dDUybDFvbDIzNXQ0"
                 target="_blank"
-                rel="noopener noreferrer"
-                class="custom-thumb-link">
+                rel="noopener noreferrer">
 
-                <div class="video-container thumb-container">
+                <div class="media-box">
 
                     <img
+                        class="thumbnail"
                         src="https://raw.githubusercontent.com/nuriyilmazer/peoplefilms/main/messi.png"
-                        alt="Instagram Video">
+                        alt="Messi">
 
-                    <div class="play-overlay">
-
-                        <span>
-                            Watch &rarr;
-                        </span>
-
+                    <div class="watch">
+                        Watch on Instagram
                     </div>
 
                 </div>
@@ -437,17 +461,24 @@
 
 
 
-        <!-- VIDEO 3 -->
+        <!-- =====================
+             04 — CARPET COURT
+        ====================== -->
 
         <div class="video-card">
 
-            <div class="video-container">
+            <div
+                class="media-box vimeo-video"
+                data-video="1023881952">
 
-                <iframe
-                    src="https://player.vimeo.com/video/1023881952?title=0&byline=0&portrait=0"
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
+                <img
+                    class="thumbnail"
+                    src="https://vumbnail.com/1023881952.jpg"
+                    alt="Carpet Court">
+
+                <div class="watch">
+                    Watch
+                </div>
 
             </div>
 
@@ -455,17 +486,24 @@
 
 
 
-        <!-- VIDEO 4 -->
+        <!-- =====================
+             05
+        ====================== -->
 
         <div class="video-card">
 
-            <div class="video-container">
+            <div
+                class="media-box vimeo-video"
+                data-video="1196732175">
 
-                <iframe
-                    src="https://player.vimeo.com/video/1196732175?title=0&byline=0&portrait=0"
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
+                <img
+                    class="thumbnail"
+                    src="https://vumbnail.com/1196732175.jpg"
+                    alt="Film">
+
+                <div class="watch">
+                    Watch
+                </div>
 
             </div>
 
@@ -473,17 +511,24 @@
 
 
 
-        <!-- VIDEO 5 -->
+        <!-- =====================
+             06 — IBRAHIM KUTLUAY
+        ====================== -->
 
         <div class="video-card">
 
-            <div class="video-container">
+            <div
+                class="media-box vimeo-video"
+                data-video="1218850577">
 
-                <iframe
-                    src="https://player.vimeo.com/video/1218850577?title=0&byline=0&portrait=0"
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
+                <img
+                    class="thumbnail"
+                    src="https://vumbnail.com/1218850577.jpg"
+                    alt="Ibrahim Kutluay">
+
+                <div class="watch">
+                    Watch
+                </div>
 
             </div>
 
@@ -491,17 +536,24 @@
 
 
 
-        <!-- VIDEO 6 -->
+        <!-- =====================
+             07 — MURAT BOSTANCI
+        ====================== -->
 
         <div class="video-card">
 
-            <div class="video-container">
+            <div
+                class="media-box vimeo-video"
+                data-video="1212709223">
 
-                <iframe
-                    src="https://player.vimeo.com/video/1212709223?title=0&byline=0&portrait=0"
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
+                <img
+                    class="thumbnail"
+                    src="https://vumbnail.com/1212709223.jpg"
+                    alt="Murat Bostanci">
+
+                <div class="watch">
+                    Watch
+                </div>
 
             </div>
 
@@ -509,17 +561,24 @@
 
 
 
-        <!-- VIDEO 7 -->
+        <!-- =====================
+             08 — SAHIKA ERCUMEN
+        ====================== -->
 
         <div class="video-card">
 
-            <div class="video-container">
+            <div
+                class="media-box vimeo-video"
+                data-video="1213508982">
 
-                <iframe
-                    src="https://player.vimeo.com/video/1213508982?title=0&byline=0&portrait=0"
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
+                <img
+                    class="thumbnail"
+                    src="https://vumbnail.com/1213508982.jpg"
+                    alt="Sahika Ercumen">
+
+                <div class="watch">
+                    Watch
+                </div>
 
             </div>
 
@@ -527,17 +586,25 @@
 
 
 
-        <!-- VIDEO 8 -->
+        <!-- =====================
+             09 — CONTINENTAL PASS
+        ====================== -->
 
         <div class="video-card">
 
-            <div class="video-container">
+            <div
+                class="media-box vimeo-video"
+                data-video="1032149982"
+                data-hash="70dc504a5e">
 
-                <iframe
-                    src="https://player.vimeo.com/video/1032149982?h=70dc504a5e&title=0&byline=0&portrait=0"
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
+                <img
+                    class="thumbnail"
+                    src="https://vumbnail.com/1032149982.jpg"
+                    alt="Continental Pass">
+
+                <div class="watch">
+                    Watch
+                </div>
 
             </div>
 
@@ -545,17 +612,25 @@
 
 
 
-        <!-- VIDEO 9 -->
+        <!-- =====================
+             10
+        ====================== -->
 
         <div class="video-card">
 
-            <div class="video-container">
+            <div
+                class="media-box vimeo-video"
+                data-video="1117936427"
+                data-hash="70dc504a5e">
 
-                <iframe
-                    src="https://player.vimeo.com/video/1117936427?h=70dc504a5e&title=0&byline=0&portrait=0"
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
+                <img
+                    class="thumbnail"
+                    src="https://vumbnail.com/1117936427.jpg"
+                    alt="Film">
+
+                <div class="watch">
+                    Watch
+                </div>
 
             </div>
 
@@ -563,17 +638,25 @@
 
 
 
-        <!-- VIDEO 10 -->
+        <!-- =====================
+             11
+        ====================== -->
 
         <div class="video-card">
 
-            <div class="video-container">
+            <div
+                class="media-box vimeo-video"
+                data-video="396073655"
+                data-hash="1391c69af1">
 
-                <iframe
-                    src="https://player.vimeo.com/video/396073655?h=1391c69af1&title=0&byline=0&portrait=0"
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
+                <img
+                    class="thumbnail"
+                    src="https://vumbnail.com/396073655.jpg"
+                    alt="Film">
+
+                <div class="watch">
+                    Watch
+                </div>
 
             </div>
 
@@ -584,13 +667,72 @@
 
 
 
-    <!-- FOOTER -->
+    <!-- =========================
+         FOOTER
+    ========================== -->
 
     <footer id="contact">
 
         &copy; 2026 people films all rights reserved.
 
     </footer>
+
+
+
+    <!-- =========================
+         VIDEO PLAYER SCRIPT
+    ========================== -->
+
+    <script>
+
+        const videos =
+            document.querySelectorAll(".vimeo-video");
+
+
+        videos.forEach(video => {
+
+            video.addEventListener("click", function () {
+
+                const videoID =
+                    this.dataset.video;
+
+                const hash =
+                    this.dataset.hash;
+
+
+                let videoURL =
+                    "https://player.vimeo.com/video/" +
+                    videoID +
+                    "?autoplay=1&title=0&byline=0&portrait=0";
+
+
+                if (hash) {
+
+                    videoURL =
+                        "https://player.vimeo.com/video/" +
+                        videoID +
+                        "?h=" +
+                        hash +
+                        "&autoplay=1&title=0&byline=0&portrait=0";
+
+                }
+
+
+                this.innerHTML = `
+
+                    <iframe
+                        src="${videoURL}"
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+
+                `;
+
+            });
+
+        });
+
+    </script>
 
 
 </body>
