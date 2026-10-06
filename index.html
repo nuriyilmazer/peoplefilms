@@ -2,16 +2,22 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>people films</title>
 
+
     <style>
 
-        /* =========================
+        /* ========================================
            RESET
-        ========================= */
+        ======================================== */
 
         * {
             margin: 0;
@@ -19,8 +25,16 @@
             box-sizing: border-box;
         }
 
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
         body {
-            background: #0b0b0b;
+
+            background-color: #0b0b0b;
+
             color: #f4f4f4;
 
             font-family:
@@ -33,38 +47,53 @@
                 sans-serif;
 
             overflow-x: hidden;
+
             line-height: 1.6;
+
         }
 
 
-        /* =========================
+
+        /* ========================================
            HEADER
-        ========================= */
+        ======================================== */
 
         header {
+
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
 
             padding: 30px 50px;
 
             border-bottom: 1px solid #1a1a1a;
 
-            background: #0b0b0b;
+            background-color: #0b0b0b;
+
         }
 
+
         .logo {
+
             font-size: 1.1rem;
+
             letter-spacing: 1.5px;
 
             color: #fff;
+
             text-decoration: none;
 
             font-weight: 500;
+
         }
 
+
         nav a {
+
             color: #888;
+
             text-decoration: none;
 
             margin-left: 30px;
@@ -72,30 +101,41 @@
             font-size: 0.85rem;
 
             text-transform: uppercase;
+
             letter-spacing: 1px;
 
-            transition: color 0.3s;
+            transition: color 0.3s ease;
+
         }
+
 
         nav a:hover {
+
             color: #fff;
+
         }
 
 
-        /* =========================
+
+        /* ========================================
            HERO
-        ========================= */
+        ======================================== */
 
         .hero {
+
             text-align: center;
 
             padding: 100px 20px 80px;
 
             max-width: 900px;
+
             margin: 0 auto;
+
         }
 
+
         .hero h1 {
+
             font-size: 1.4rem;
 
             font-weight: 300;
@@ -105,14 +145,17 @@
             letter-spacing: -0.3px;
 
             color: #e0e0e0;
+
         }
 
 
-        /* =========================
+
+        /* ========================================
            GRID
-        ========================= */
+        ======================================== */
 
         .grid {
+
             display: grid;
 
             grid-template-columns:
@@ -120,36 +163,38 @@
 
             gap: 40px;
 
-            padding:
-                0 50px 100px;
+            padding: 0 50px 100px;
 
             max-width: 1600px;
 
             margin: 0 auto;
+
         }
 
 
-        /* =========================
+
+        /* ========================================
            VIDEO CARD
-        ========================= */
+        ======================================== */
 
         .video-card {
+
             width: 100%;
 
             min-width: 0;
+
         }
 
 
-        /* =========================
+
+        /* ========================================
            MEDIA BOX
 
-           IMPORTANT:
-           EVERY SINGLE CARD
-           HAS EXACTLY THE SAME
-           16:9 DIMENSIONS
-        ========================= */
+           EVERY CARD IS 16:9
+        ======================================== */
 
         .media-box {
+
             position: relative;
 
             width: 100%;
@@ -158,50 +203,62 @@
 
             overflow: hidden;
 
-            background: #111;
+            background-color: #111;
 
             cursor: pointer;
+
         }
 
 
-        /* =========================
-           THUMBNAIL
-        ========================= */
+
+        /* ========================================
+           THUMBNAILS
+        ======================================== */
 
         .thumbnail {
+
             position: absolute;
 
             inset: 0;
 
             width: 100%;
+
             height: 100%;
+
+            display: block;
 
             object-fit: cover;
 
-            display: block;
+            object-position: center;
 
             transition:
                 transform 0.6s ease,
                 filter 0.4s ease;
+
         }
 
 
-        /* =========================
+
+        /* ========================================
            HOVER
-        ========================= */
+        ======================================== */
 
         .media-box:hover .thumbnail {
+
             transform: scale(1.025);
 
             filter: brightness(0.65);
+
         }
 
 
-        /* =========================
-           WATCH TEXT
-        ========================= */
+
+        /* ========================================
+           WATCH
+        ======================================== */
 
         .watch {
+
             position: absolute;
 
             inset: 0;
@@ -209,11 +266,14 @@
             display: flex;
 
             align-items: center;
+
             justify-content: center;
 
-            color: white;
+            color: #fff;
 
-            font-size: 0.8rem;
+            font-size: 0.78rem;
+
+            font-weight: 400;
 
             letter-spacing: 2px;
 
@@ -224,36 +284,68 @@
             transition: opacity 0.3s ease;
 
             pointer-events: none;
+
+            z-index: 2;
+
         }
+
 
         .media-box:hover .watch {
+
             opacity: 1;
+
         }
 
 
-        /* =========================
+
+        /* ========================================
            VIMEO PLAYER
-        ========================= */
+        ======================================== */
 
         .media-box iframe {
+
             position: absolute;
 
             inset: 0;
 
             width: 100%;
+
             height: 100%;
 
             border: 0;
 
-            z-index: 5;
+            z-index: 10;
+
+            background: #000;
+
         }
 
 
-        /* =========================
+
+        /* ========================================
+           INSTAGRAM
+        ======================================== */
+
+        .instagram-link {
+
+            display: block;
+
+            width: 100%;
+
+            text-decoration: none;
+
+            color: inherit;
+
+        }
+
+
+
+        /* ========================================
            FOOTER
-        ========================= */
+        ======================================== */
 
         footer {
+
             text-align: center;
 
             padding: 60px 50px;
@@ -264,81 +356,110 @@
 
             border-top: 1px solid #1a1a1a;
 
-            background: #090909;
+            background-color: #090909;
 
             letter-spacing: 0.5px;
+
         }
 
 
-        /* =========================
-           TABLET
-        ========================= */
 
-        @media(max-width: 1100px) {
+        /* ========================================
+           TABLET
+        ======================================== */
+
+        @media (max-width: 1100px) {
 
             .grid {
+
                 grid-template-columns:
                     repeat(2, minmax(0, 1fr));
+
             }
 
         }
 
 
-        /* =========================
-           MOBILE
-        ========================= */
 
-        @media(max-width: 768px) {
+        /* ========================================
+           MOBILE
+        ======================================== */
+
+        @media (max-width: 768px) {
 
             header {
+
                 padding: 20px;
+
             }
+
 
             .logo {
+
                 font-size: 1rem;
+
             }
 
+
             nav a {
+
                 margin-left: 15px;
 
                 font-size: 0.7rem;
+
             }
+
 
             .hero {
+
                 padding: 60px 20px;
+
             }
+
 
             .hero h1 {
+
                 font-size: 1.2rem;
+
+                line-height: 1.5;
+
             }
 
+
             .grid {
+
                 grid-template-columns: 1fr;
 
-                padding:
-                    0 20px 60px;
+                padding: 0 20px 60px;
 
                 gap: 25px;
+
             }
 
         }
 
     </style>
+
 </head>
+
 
 
 <body>
 
 
-    <!-- =========================
+    <!-- ========================================
          HEADER
-    ========================== -->
+    ========================================= -->
 
     <header>
 
-        <a href="#" class="logo">
+        <a
+            href="#"
+            class="logo"
+        >
             people films
         </a>
+
 
         <nav>
 
@@ -360,9 +481,9 @@
 
 
 
-    <!-- =========================
+    <!-- ========================================
          HERO
-    ========================== -->
+    ========================================= -->
 
     <section class="hero">
 
@@ -374,27 +495,33 @@
 
 
 
-    <!-- =========================
+    <!-- ========================================
          WORK
-    ========================== -->
+    ========================================= -->
 
-    <div class="grid" id="reel">
+    <main
+        class="grid"
+        id="reel"
+    >
 
 
-        <!-- =====================
-             01 — FUT / RISE ABOVE
-        ====================== -->
+
+        <!-- ====================================
+             01 — RISE ABOVE
+        ===================================== -->
 
         <div class="video-card">
 
             <div
                 class="media-box vimeo-video"
-                data-video="1229333256">
+                data-video="1229333256"
+            >
 
                 <img
                     class="thumbnail"
-                    src="https://vumbnail.com/1229333256.jpg"
-                    alt="Rise Above">
+                    src="01-rise-above.JPG"
+                    alt="Rise Above"
+                >
 
                 <div class="watch">
                     Watch
@@ -406,20 +533,22 @@
 
 
 
-        <!-- =====================
+        <!-- ====================================
              02 — RED BULL
-        ====================== -->
+        ===================================== -->
 
         <div class="video-card">
 
             <div
                 class="media-box vimeo-video"
-                data-video="512495175">
+                data-video="512495175"
+            >
 
                 <img
                     class="thumbnail"
-                    src="https://vumbnail.com/512495175.jpg"
-                    alt="Red Bull">
+                    src="02-redbull.jpg.JPG"
+                    alt="Red Bull"
+                >
 
                 <div class="watch">
                     Watch
@@ -431,23 +560,26 @@
 
 
 
-        <!-- =====================
+        <!-- ====================================
              03 — MESSI / INSTAGRAM
-        ====================== -->
+        ===================================== -->
 
         <div class="video-card">
 
             <a
+                class="instagram-link"
                 href="https://www.instagram.com/reel/Co6tPhCOl55/?igsh=dDUybDFvbDIzNXQ0"
                 target="_blank"
-                rel="noopener noreferrer">
+                rel="noopener noreferrer"
+            >
 
                 <div class="media-box">
 
                     <img
                         class="thumbnail"
-                        src="https://raw.githubusercontent.com/nuriyilmazer/peoplefilms/main/messi.png"
-                        alt="Messi">
+                        src="messi.png"
+                        alt="Messi"
+                    >
 
                     <div class="watch">
                         Watch on Instagram
@@ -461,20 +593,22 @@
 
 
 
-        <!-- =====================
+        <!-- ====================================
              04 — CARPET COURT
-        ====================== -->
+        ===================================== -->
 
         <div class="video-card">
 
             <div
                 class="media-box vimeo-video"
-                data-video="1023881952">
+                data-video="1023881952"
+            >
 
                 <img
                     class="thumbnail"
-                    src="https://vumbnail.com/1023881952.jpg"
-                    alt="Carpet Court">
+                    src="04-carpet-court.jpg.JPG"
+                    alt="Carpet Court"
+                >
 
                 <div class="watch">
                     Watch
@@ -486,20 +620,22 @@
 
 
 
-        <!-- =====================
-             05
-        ====================== -->
+        <!-- ====================================
+             05 — LIKA BEHAR
+        ===================================== -->
 
         <div class="video-card">
 
             <div
                 class="media-box vimeo-video"
-                data-video="1196732175">
+                data-video="1196732175"
+            >
 
                 <img
                     class="thumbnail"
-                    src="https://vumbnail.com/1196732175.jpg"
-                    alt="Film">
+                    src="05-lika-behar.jpg.JPG"
+                    alt="Lika Behar"
+                >
 
                 <div class="watch">
                     Watch
@@ -511,20 +647,22 @@
 
 
 
-        <!-- =====================
+        <!-- ====================================
              06 — IBRAHIM KUTLUAY
-        ====================== -->
+        ===================================== -->
 
         <div class="video-card">
 
             <div
                 class="media-box vimeo-video"
-                data-video="1218850577">
+                data-video="1218850577"
+            >
 
                 <img
                     class="thumbnail"
-                    src="https://vumbnail.com/1218850577.jpg"
-                    alt="Ibrahim Kutluay">
+                    src="06-kutluay.jpg.JPG"
+                    alt="Ibrahim Kutluay"
+                >
 
                 <div class="watch">
                     Watch
@@ -536,20 +674,22 @@
 
 
 
-        <!-- =====================
+        <!-- ====================================
              07 — MURAT BOSTANCI
-        ====================== -->
+        ===================================== -->
 
         <div class="video-card">
 
             <div
                 class="media-box vimeo-video"
-                data-video="1212709223">
+                data-video="1212709223"
+            >
 
                 <img
                     class="thumbnail"
-                    src="https://vumbnail.com/1212709223.jpg"
-                    alt="Murat Bostanci">
+                    src="07-bostanci.jpg.JPG"
+                    alt="Murat Bostanci"
+                >
 
                 <div class="watch">
                     Watch
@@ -561,20 +701,22 @@
 
 
 
-        <!-- =====================
+        <!-- ====================================
              08 — SAHIKA ERCUMEN
-        ====================== -->
+        ===================================== -->
 
         <div class="video-card">
 
             <div
                 class="media-box vimeo-video"
-                data-video="1213508982">
+                data-video="1213508982"
+            >
 
                 <img
                     class="thumbnail"
-                    src="https://vumbnail.com/1213508982.jpg"
-                    alt="Sahika Ercumen">
+                    src="08-sahika.jpg.JPG"
+                    alt="Sahika Ercumen"
+                >
 
                 <div class="watch">
                     Watch
@@ -586,21 +728,23 @@
 
 
 
-        <!-- =====================
-             09 — CONTINENTAL PASS
-        ====================== -->
+        <!-- ====================================
+             09 — CONTINENTAL
+        ===================================== -->
 
         <div class="video-card">
 
             <div
                 class="media-box vimeo-video"
                 data-video="1032149982"
-                data-hash="70dc504a5e">
+                data-hash="70dc504a5e"
+            >
 
                 <img
                     class="thumbnail"
-                    src="https://vumbnail.com/1032149982.jpg"
-                    alt="Continental Pass">
+                    src="09-continental.JPG"
+                    alt="Continental Pass"
+                >
 
                 <div class="watch">
                     Watch
@@ -612,21 +756,23 @@
 
 
 
-        <!-- =====================
-             10
-        ====================== -->
+        <!-- ====================================
+             10 — SAMSUNG
+        ===================================== -->
 
         <div class="video-card">
 
             <div
                 class="media-box vimeo-video"
                 data-video="1117936427"
-                data-hash="70dc504a5e">
+                data-hash="70dc504a5e"
+            >
 
                 <img
                     class="thumbnail"
-                    src="https://vumbnail.com/1117936427.jpg"
-                    alt="Film">
+                    src="10-samsung.JPG"
+                    alt="Samsung"
+                >
 
                 <div class="watch">
                     Watch
@@ -638,21 +784,23 @@
 
 
 
-        <!-- =====================
-             11
-        ====================== -->
+        <!-- ====================================
+             11 — IPHONE
+        ===================================== -->
 
         <div class="video-card">
 
             <div
                 class="media-box vimeo-video"
                 data-video="396073655"
-                data-hash="1391c69af1">
+                data-hash="1391c69af1"
+            >
 
                 <img
                     class="thumbnail"
-                    src="https://vumbnail.com/396073655.jpg"
-                    alt="Film">
+                    src="11-iphone.JPG"
+                    alt="iPhone"
+                >
 
                 <div class="watch">
                     Watch
@@ -663,13 +811,233 @@
         </div>
 
 
-    </div>
+
+        <!-- ====================================
+             12 — JOALI
+        ===================================== -->
+
+        <div class="video-card">
+
+            <div
+                class="media-box vimeo-video"
+                data-video="1180042516"
+            >
+
+                <img
+                    class="thumbnail"
+                    src="12-joali.JPG"
+                    alt="Joali"
+                >
+
+                <div class="watch">
+                    Watch
+                </div>
+
+            </div>
+
+        </div>
 
 
 
-    <!-- =========================
+        <!-- ====================================
+             13 — CAP THE TAP
+        ===================================== -->
+
+        <div class="video-card">
+
+            <div
+                class="media-box vimeo-video"
+                data-video="1118730025"
+            >
+
+                <img
+                    class="thumbnail"
+                    src="13-capthetap.JPG"
+                    alt="Cap The Tap"
+                >
+
+                <div class="watch">
+                    Watch
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ====================================
+             14 — NAT GEO
+        ===================================== -->
+
+        <div class="video-card">
+
+            <div
+                class="media-box vimeo-video"
+                data-video="589476491"
+            >
+
+                <img
+                    class="thumbnail"
+                    src="14-natgeo.JPG"
+                    alt="National Geographic"
+                >
+
+                <div class="watch">
+                    Watch
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ====================================
+             15 — NARDO
+        ===================================== -->
+
+        <div class="video-card">
+
+            <div
+                class="media-box vimeo-video"
+                data-video="1179894863"
+                data-hash="1795eba3d2"
+            >
+
+                <img
+                    class="thumbnail"
+                    src="15-nardo.JPG"
+                    alt="Nardo"
+                >
+
+                <div class="watch">
+                    Watch
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ====================================
+             16 — CARPET AD
+        ===================================== -->
+
+        <div class="video-card">
+
+            <div
+                class="media-box vimeo-video"
+                data-video="997631266"
+            >
+
+                <img
+                    class="thumbnail"
+                    src="16-carpet-ad.JPG"
+                    alt="Carpet Ad"
+                >
+
+                <div class="watch">
+                    Watch
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ====================================
+             17 — CLIMA
+        ===================================== -->
+
+        <div class="video-card">
+
+            <div
+                class="media-box vimeo-video"
+                data-video="1032139832"
+                data-hash="005213bd4b"
+            >
+
+                <img
+                    class="thumbnail"
+                    src="17-clima.JPG"
+                    alt="Clima"
+                >
+
+                <div class="watch">
+                    Watch
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ====================================
+             18 — IPHONE
+        ===================================== -->
+
+        <div class="video-card">
+
+            <div
+                class="media-box vimeo-video"
+                data-video="396073655"
+                data-hash="1391c69af1"
+            >
+
+                <img
+                    class="thumbnail"
+                    src="18-iphone.JPG"
+                    alt="iPhone"
+                >
+
+                <div class="watch">
+                    Watch
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ====================================
+             19 — GTM
+        ===================================== -->
+
+        <div class="video-card">
+
+            <div
+                class="media-box vimeo-video"
+                data-video="1008728870"
+                data-hash="fa36ac0a4e"
+            >
+
+                <img
+                    class="thumbnail"
+                    src="19-GTM.JPG"
+                    alt="GTM"
+                >
+
+                <div class="watch">
+                    Watch
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- ========================================
          FOOTER
-    ========================== -->
+    ========================================= -->
 
     <footer id="contact">
 
@@ -679,9 +1047,9 @@
 
 
 
-    <!-- =========================
-         VIDEO PLAYER SCRIPT
-    ========================== -->
+    <!-- ========================================
+         VIDEO PLAYER
+    ========================================= -->
 
     <script>
 
@@ -689,46 +1057,59 @@
             document.querySelectorAll(".vimeo-video");
 
 
-        videos.forEach(video => {
+        videos.forEach((video) => {
 
-            video.addEventListener("click", function () {
-
-                const videoID =
-                    this.dataset.video;
-
-                const hash =
-                    this.dataset.hash;
+            video.addEventListener(
+                "click",
+                function () {
 
 
-                let videoURL =
-                    "https://player.vimeo.com/video/" +
-                    videoID +
-                    "?autoplay=1&title=0&byline=0&portrait=0";
+                    const videoID =
+                        this.dataset.video;
 
 
-                if (hash) {
+                    const hash =
+                        this.dataset.hash;
 
-                    videoURL =
+
+                    let parameters =
+                        "autoplay=1" +
+                        "&title=0" +
+                        "&byline=0" +
+                        "&portrait=0";
+
+
+                    if (hash) {
+
+                        parameters =
+                            "h=" +
+                            hash +
+                            "&" +
+                            parameters;
+
+                    }
+
+
+                    const videoURL =
                         "https://player.vimeo.com/video/" +
                         videoID +
-                        "?h=" +
-                        hash +
-                        "&autoplay=1&title=0&byline=0&portrait=0";
-
-                }
+                        "?" +
+                        parameters;
 
 
-                this.innerHTML = `
+                    this.innerHTML = `
 
-                    <iframe
-                        src="${videoURL}"
-                        allow="autoplay; fullscreen; picture-in-picture"
-                        allowfullscreen>
-                    </iframe>
+                        <iframe
+                            src="${videoURL}"
+                            allow="autoplay; fullscreen; picture-in-picture"
+                            allowfullscreen
+                        ></iframe>
 
-                `;
+                    `;
 
-            });
+                },
+                { once: true }
+            );
 
         });
 
