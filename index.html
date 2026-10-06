@@ -191,7 +191,7 @@
 
 
         /* ========================================
-           HOVER
+           CARD HOVER
         ======================================== */
 
         .media-box:hover .thumbnail {
@@ -238,7 +238,7 @@
 
 
         /* ========================================
-           VIMEO PLAYER
+           CARD VIMEO PLAYER
         ======================================== */
 
         .media-box iframe {
@@ -269,6 +269,87 @@
             text-decoration: none;
 
             color: inherit;
+        }
+
+
+        /* ========================================
+           REEL MODAL
+        ======================================== */
+
+        .reel-modal {
+            position: fixed;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background: rgba(0, 0, 0, 0.96);
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 60px;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transition:
+                opacity 0.35s ease,
+                visibility 0.35s ease;
+
+            z-index: 9999;
+        }
+
+        .reel-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .reel-player {
+            width: min(1200px, 90vw);
+
+            aspect-ratio: 16 / 9;
+
+            background: #000;
+        }
+
+        .reel-player iframe {
+            display: block;
+
+            width: 100%;
+            height: 100%;
+
+            border: 0;
+        }
+
+        .reel-close {
+            position: absolute;
+
+            top: 25px;
+            right: 35px;
+
+            background: none;
+            border: 0;
+
+            color: #fff;
+
+            font-size: 38px;
+            font-weight: 200;
+
+            line-height: 1;
+
+            cursor: pointer;
+
+            opacity: 0.65;
+
+            transition: opacity 0.2s ease;
+        }
+
+        .reel-close:hover {
+            opacity: 1;
         }
 
 
@@ -343,6 +424,21 @@
                 gap: 25px;
             }
 
+            .reel-modal {
+                padding: 20px;
+            }
+
+            .reel-player {
+                width: 100%;
+            }
+
+            .reel-close {
+                top: 18px;
+                right: 20px;
+
+                font-size: 32px;
+            }
+
         }
 
     </style>
@@ -370,9 +466,8 @@
         <nav>
 
             <a
-                href="https://vimeo.com/1229475510/27cc224175"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
+                id="reel-button"
             >
                 Reel
             </a>
@@ -430,9 +525,7 @@
                     alt="Rise Above"
                 >
 
-                <div class="watch">
-                    Watch
-                </div>
+                <div class="watch">Watch</div>
 
             </div>
 
@@ -455,9 +548,7 @@
                     alt="Red Bull"
                 >
 
-                <div class="watch">
-                    Watch
-                </div>
+                <div class="watch">Watch</div>
 
             </div>
 
@@ -465,7 +556,7 @@
 
 
 
-        <!-- 03 — MESSI -->
+        <!-- 03 — MESSI / INSTAGRAM -->
 
         <div class="video-card">
 
@@ -511,9 +602,7 @@
                     alt="Carpet Court"
                 >
 
-                <div class="watch">
-                    Watch
-                </div>
+                <div class="watch">Watch</div>
 
             </div>
 
@@ -536,9 +625,7 @@
                     alt="Lika Behar"
                 >
 
-                <div class="watch">
-                    Watch
-                </div>
+                <div class="watch">Watch</div>
 
             </div>
 
@@ -561,9 +648,7 @@
                     alt="Ibrahim Kutluay"
                 >
 
-                <div class="watch">
-                    Watch
-                </div>
+                <div class="watch">Watch</div>
 
             </div>
 
@@ -586,9 +671,7 @@
                     alt="Murat Bostanci"
                 >
 
-                <div class="watch">
-                    Watch
-                </div>
+                <div class="watch">Watch</div>
 
             </div>
 
@@ -611,9 +694,7 @@
                     alt="Sahika Ercumen"
                 >
 
-                <div class="watch">
-                    Watch
-                </div>
+                <div class="watch">Watch</div>
 
             </div>
 
@@ -637,9 +718,7 @@
                     alt="Continental Pass"
                 >
 
-                <div class="watch">
-                    Watch
-                </div>
+                <div class="watch">Watch</div>
 
             </div>
 
@@ -663,9 +742,7 @@
                     alt="Samsung"
                 >
 
-                <div class="watch">
-                    Watch
-                </div>
+                <div class="watch">Watch</div>
 
             </div>
 
@@ -689,9 +766,7 @@
                     alt="iPhone"
                 >
 
-                <div class="watch">
-                    Watch
-                </div>
+                <div class="watch">Watch</div>
 
             </div>
 
@@ -714,9 +789,7 @@
                     alt="Joali"
                 >
 
-                <div class="watch">
-                    Watch
-                </div>
+                <div class="watch">Watch</div>
 
             </div>
 
@@ -739,9 +812,7 @@
                     alt="Cap The Tap"
                 >
 
-                <div class="watch">
-                    Watch
-                </div>
+                <div class="watch">Watch</div>
 
             </div>
 
@@ -764,9 +835,7 @@
                     alt="National Geographic"
                 >
 
-                <div class="watch">
-                    Watch
-                </div>
+                <div class="watch">Watch</div>
 
             </div>
 
@@ -790,9 +859,7 @@
                     alt="Nardo"
                 >
 
-                <div class="watch">
-                    Watch
-                </div>
+                <div class="watch">Watch</div>
 
             </div>
 
@@ -815,9 +882,7 @@
                     alt="Carpet Ad"
                 >
 
-                <div class="watch">
-                    Watch
-                </div>
+                <div class="watch">Watch</div>
 
             </div>
 
@@ -841,9 +906,7 @@
                     alt="Clima"
                 >
 
-                <div class="watch">
-                    Watch
-                </div>
+                <div class="watch">Watch</div>
 
             </div>
 
@@ -867,9 +930,7 @@
                     alt="iPhone"
                 >
 
-                <div class="watch">
-                    Watch
-                </div>
+                <div class="watch">Watch</div>
 
             </div>
 
@@ -893,9 +954,7 @@
                     alt="GTM"
                 >
 
-                <div class="watch">
-                    Watch
-                </div>
+                <div class="watch">Watch</div>
 
             </div>
 
@@ -919,10 +978,42 @@
 
 
     <!-- ========================================
-         VIDEO PLAYER SCRIPT
+         REEL MODAL
+    ========================================= -->
+
+    <div
+        id="reel-modal"
+        class="reel-modal"
+    >
+
+        <button
+            id="reel-close"
+            class="reel-close"
+            aria-label="Close reel"
+        >
+            ×
+        </button>
+
+
+        <div
+            class="reel-player"
+            id="reel-player"
+        >
+        </div>
+
+    </div>
+
+
+
+    <!-- ========================================
+         JAVASCRIPT
     ========================================= -->
 
     <script>
+
+        /* ========================================
+           GRID VIDEOS
+        ======================================== */
 
         const videos =
             document.querySelectorAll(".vimeo-video");
@@ -981,6 +1072,112 @@
             );
 
         });
+
+
+
+        /* ========================================
+           REEL MODAL
+        ======================================== */
+
+        const reelButton =
+            document.getElementById("reel-button");
+
+        const reelModal =
+            document.getElementById("reel-modal");
+
+        const reelPlayer =
+            document.getElementById("reel-player");
+
+        const reelClose =
+            document.getElementById("reel-close");
+
+
+        function openReel() {
+
+            reelPlayer.innerHTML = `
+
+                <iframe
+                    src="https://player.vimeo.com/video/1229475510?h=27cc224175&autoplay=1&title=0&byline=0&portrait=0"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowfullscreen
+                ></iframe>
+
+            `;
+
+
+            reelModal.classList.add("active");
+
+
+            document.body.style.overflow = "hidden";
+
+        }
+
+
+        function closeReel() {
+
+            reelModal.classList.remove("active");
+
+
+            /*
+            Removing the iframe also stops
+            the Vimeo video and its audio.
+            */
+
+            reelPlayer.innerHTML = "";
+
+
+            document.body.style.overflow = "";
+
+        }
+
+
+        reelButton.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+
+                openReel();
+
+            }
+        );
+
+
+        reelClose.addEventListener(
+            "click",
+            closeReel
+        );
+
+
+        reelModal.addEventListener(
+            "click",
+            function (event) {
+
+                if (event.target === reelModal) {
+
+                    closeReel();
+
+                }
+
+            }
+        );
+
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Escape" &&
+                    reelModal.classList.contains("active")
+                ) {
+
+                    closeReel();
+
+                }
+
+            }
+        );
 
     </script>
 
