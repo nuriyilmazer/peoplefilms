@@ -2,1234 +2,654 @@
 <html lang="en">
 
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>people films</title>
-
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: #0b0b0b;
-            color: #f4f4f4;
-
-            font-family:
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                Roboto,
-                Helvetica,
-                Arial,
-                sans-serif;
-
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-
-        /* ========================================
-           HEADER
-        ======================================== */
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            padding: 30px 50px;
-
-            border-bottom: 1px solid #1a1a1a;
-
-            background-color: #0b0b0b;
-        }
-
-        .logo {
-            font-size: 1.1rem;
-            letter-spacing: 1.5px;
-
-            color: #fff;
-            text-decoration: none;
-
-            font-weight: 500;
-        }
-
-        nav a {
-            color: #888;
-            text-decoration: none;
-
-            margin-left: 30px;
-
-            font-size: 0.85rem;
-
-            text-transform: uppercase;
-            letter-spacing: 1px;
-
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover {
-            color: #fff;
-        }
-
-
-        /* ========================================
-           HERO
-        ======================================== */
-
-        .hero {
-            text-align: center;
-
-            padding: 100px 20px 80px;
-
-            max-width: 900px;
-
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 1.15rem;
-
-            font-weight: 300;
-
-            line-height: 1.6;
-
-            letter-spacing: -0.3px;
-
-            color: #e0e0e0;
-        }
-
-
-        /* ========================================
-           GRID
-        ======================================== */
-
-        .grid {
-            display: grid;
-
-            grid-template-columns:
-                repeat(3, minmax(0, 1fr));
-
-            gap: 40px;
-
-            padding: 0 50px 100px;
-
-            max-width: 1600px;
-
-            margin: 0 auto;
-        }
-
-        .video-card {
-            width: 100%;
-            min-width: 0;
-        }
-
-
-        /* ========================================
-           MEDIA BOX
-        ======================================== */
-
-        .media-box {
-            position: relative;
-
-            width: 100%;
-
-            aspect-ratio: 16 / 9;
-
-            overflow: hidden;
-
-            background-color: #111;
-
-            cursor: pointer;
-        }
-
-
-        /* ========================================
-           THUMBNAILS
-        ======================================== */
-
-        .thumbnail {
-            position: absolute;
-
-            inset: 0;
-
-            width: 100%;
-            height: 100%;
-
-            display: block;
-
-            object-fit: cover;
-            object-position: center;
-
-            transition:
-                transform 0.6s ease,
-                filter 0.4s ease;
-        }
-
-
-        /* ========================================
-           HOVER
-        ======================================== */
-
-        .media-box:hover .thumbnail {
-            transform: scale(1.025);
-            filter: brightness(0.65);
-        }
-
-
-        /* ========================================
-           WATCH
-        ======================================== */
-
-        .watch {
-            position: absolute;
-
-            inset: 0;
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            color: #fff;
-
-            font-size: 0.78rem;
-            font-weight: 400;
-
-            letter-spacing: 2px;
-
-            text-transform: uppercase;
-
-            opacity: 0;
-
-            transition: opacity 0.3s ease;
-
-            pointer-events: none;
-
-            z-index: 2;
-        }
-
-        .media-box:hover .watch {
-            opacity: 1;
-        }
-
-
-        /* ========================================
-           VIMEO PLAYER
-        ======================================== */
-
-        .media-box iframe {
-            position: absolute;
-
-            inset: 0;
-
-            width: 100%;
-            height: 100%;
-
-            border: 0;
-
-            z-index: 10;
-
-            background: #000;
-        }
-
-
-        /* ========================================
-           INSTAGRAM
-        ======================================== */
-
-        .instagram-link {
-            display: block;
-            width: 100%;
-
-            text-decoration: none;
-            color: inherit;
-        }
-
-
-        /* ========================================
-           REEL MODAL
-        ======================================== */
-
-        .reel-modal {
-            position: fixed;
-
-            inset: 0;
-
-            width: 100%;
-            height: 100%;
-
-            background: rgba(0, 0, 0, 0.96);
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            padding: 60px;
-
-            opacity: 0;
-            visibility: hidden;
-
-            transition:
-                opacity 0.35s ease,
-                visibility 0.35s ease;
-
-            z-index: 9999;
-        }
-
-        .reel-modal.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .reel-player {
-            width: min(1200px, 90vw);
-
-            aspect-ratio: 16 / 9;
-
-            background: #000;
-        }
-
-        .reel-player iframe {
-            display: block;
-
-            width: 100%;
-            height: 100%;
-
-            border: 0;
-        }
-
-        .reel-close {
-            position: absolute;
-
-            top: 25px;
-            right: 35px;
-
-            background: none;
-            border: 0;
-
-            color: #fff;
-
-            font-size: 38px;
-            font-weight: 200;
-
-            line-height: 1;
-
-            cursor: pointer;
-
-            opacity: 0.65;
-
-            transition: opacity 0.2s ease;
-        }
-
-        .reel-close:hover {
-            opacity: 1;
-        }
-
-
-        /* ========================================
-           FOOTER
-        ======================================== */
-
-        footer {
-            text-align: center;
-
-            padding: 60px 50px;
-
-            color: #555;
-
-            font-size: 0.8rem;
-
-            border-top: 1px solid #1a1a1a;
-
-            background-color: #090909;
-
-            letter-spacing: 0.5px;
-        }
-
-
-        /* ========================================
-           TABLET
-        ======================================== */
-
-        @media (max-width: 1100px) {
-
-            .grid {
-                grid-template-columns:
-                    repeat(2, minmax(0, 1fr));
-            }
-
-        }
-
-
-        /* ========================================
-           MOBILE
-        ======================================== */
-
-        @media (max-width: 768px) {
-
-            header {
-                padding: 20px;
-            }
-
-            .logo {
-                font-size: 1rem;
-            }
-
-            nav a {
-                margin-left: 15px;
-                font-size: 0.7rem;
-            }
-
-            .hero {
-                padding: 60px 20px;
-            }
-
-            .hero h1 {
-                font-size: 1.2rem;
-                line-height: 1.5;
-            }
-
-            .grid {
-                grid-template-columns: 1fr;
-
-                padding: 0 20px 60px;
-
-                gap: 25px;
-            }
-
-            .reel-modal {
-                padding: 20px;
-            }
-
-            .reel-player {
-                width: 100%;
-            }
-
-            .reel-close {
-                top: 18px;
-                right: 20px;
-
-                font-size: 32px;
-            }
-
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>people films</title>
+
+<style>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0b0b0b;
+  color: #f4f4f4;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 50px;
+  border-bottom: 1px solid #1a1a1a;
+  background-color: #0b0b0b;
+}
+
+.logo {
+  font-size: 1.1rem;
+  letter-spacing: 1.5px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+nav a {
+  color: #888;
+  text-decoration: none;
+  margin-left: 30px;
+  font-size: .85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color .3s ease;
+}
+
+nav a:hover {
+  color: #fff;
+}
+
+.hero {
+  text-align: center;
+  padding: 100px 20px 80px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: 1.15rem;
+  font-weight: 300;
+  line-height: 1.6;
+  letter-spacing: -.3px;
+  color: #e0e0e0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+  padding: 0 50px 100px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.video-card {
+  width: 100%;
+  min-width: 0;
+}
+
+.media-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background-color: #111;
+  cursor: pointer;
+}
+
+.thumbnail {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  transition: transform .6s ease, filter .4s ease;
+}
+
+.media-box:hover .thumbnail {
+  transform: scale(1.025);
+  filter: brightness(.65);
+}
+
+.watch {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: .78rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity .3s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.media-box:hover .watch {
+  opacity: 1;
+}
+
+.media-box iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  z-index: 10;
+  background: #000;
+}
+
+.instagram-link {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* REEL MODAL */
+
+.reel-modal {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.96);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .35s ease, visibility .35s ease;
+  z-index: 9999;
+}
+
+.reel-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.reel-player {
+  width: min(1200px, 90vw);
+  aspect-ratio: 16/9;
+  background: #000;
+}
+
+.reel-player iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.reel-close {
+  position: absolute;
+  top: 25px;
+  right: 35px;
+  background: none;
+  border: 0;
+  color: #fff;
+  font-size: 38px;
+  font-weight: 200;
+  line-height: 1;
+  cursor: pointer;
+  opacity: .65;
+  transition: opacity .2s ease;
+}
+
+.reel-close:hover {
+  opacity: 1;
+}
+
+footer {
+  text-align: center;
+  padding: 60px 50px;
+  color: #555;
+  font-size: .8rem;
+  border-top: 1px solid #1a1a1a;
+  background-color: #090909;
+  letter-spacing: .5px;
+}
+
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+
+  header {
+    padding: 20px;
+  }
+
+  .logo {
+    font-size: 1rem;
+  }
+
+  nav a {
+    margin-left: 15px;
+    font-size: .7rem;
+  }
+
+  .hero {
+    padding: 60px 20px;
+  }
+
+  .hero h1 {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    padding: 0 20px 60px;
+    gap: 25px;
+  }
+
+  .reel-modal {
+    padding: 20px;
+  }
+
+  .reel-player {
+    width: 100%;
+  }
+
+  .reel-close {
+    top: 18px;
+    right: 20px;
+    font-size: 32px;
+  }
+}
+
+</style>
 </head>
-
 
 <body>
 
+<header>
 
-    <!-- ========================================
-         HEADER
-    ======================================== -->
+  <a href="#" class="logo">people films</a>
 
-    <header>
+  <nav>
+    <a href="#" id="reel-button">Reel</a>
+    <a href="#about">About</a>
+    <a href="mailto:info@peoplefilms.net">Contact</a>
+  </nav>
 
-        <a
-            href="#"
-            class="logo"
-        >
-            people films
-        </a>
+</header>
 
+<section class="hero">
+  <h1>specialize in stories but produce everything.</h1>
+</section>
 
-        <nav>
 
-            <a
-                href="#"
-                id="reel-button"
-            >
-                Reel
-            </a>
+<main class="grid" id="work">
 
-            <a href="#about">
-                About
-            </a>
 
-            <a href="mailto:info@peoplefilms.net">
-                Contact
-            </a>
+<!-- 01 RISE -->
 
-        </nav>
+<div class="video-card">
+  <div class="media-box vimeo-video" data-video="1229333256">
+    <img class="thumbnail" src="01-rise-above.JPG" alt="Rise Above">
+    <div class="watch">Watch</div>
+  </div>
+</div>
 
-    </header>
 
+<!-- 02 CONTINENTAL -->
 
+<div class="video-card">
+  <div class="media-box vimeo-video" data-video="1032149982" data-hash="70dc504a5e">
+    <img class="thumbnail" src="09-continental.JPG" alt="Continental">
+    <div class="watch">Watch</div>
+  </div>
+</div>
 
-    <!-- ========================================
-         HERO
-    ======================================== -->
 
-    <section class="hero">
+<!-- 03 MESSI -->
 
-        <h1>
-            specialize in stories but produce everything.
-        </h1>
+<div class="video-card">
+  <a class="instagram-link"
+     href="https://www.instagram.com/reel/Co6tPhCOl55/?igsh=dDUybDFvbDIzNXQ0"
+     target="_blank"
+     rel="noopener noreferrer">
 
-    </section>
-
-
-
-    <!-- ========================================
-         WORK
-    ======================================== -->
-
-    <main
-        class="grid"
-        id="work"
-    >
-
-
-        <!-- 01 — RISE -->
-
-        <div class="video-card">
-
-            <div
-                class="media-box vimeo-video"
-                data-video="1229333256"
-            >
-
-                <img
-                    class="thumbnail"
-                    src="01-rise-above.JPG"
-                    alt="Rise Above"
-                >
-
-                <div class="watch">Watch</div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- 02 — CONTINENTAL -->
-
-        <div class="video-card">
-
-            <div
-                class="media-box vimeo-video"
-                data-video="1032149982"
-                data-hash="70dc504a5e"
-            >
-
-                <img
-                    class="thumbnail"
-                    src="09-continental.JPG"
-                    alt="Continental"
-                >
-
-                <div class="watch">Watch</div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- 03 — MESSI -->
-
-        <div class="video-card">
-
-            <a
-                class="instagram-link"
-                href="https://www.instagram.com/reel/Co6tPhCOl55/?igsh=dDUybDFvbDIzNXQ0"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-
-                <div class="media-box">
-
-                    <img
-                        class="thumbnail"
-                        src="messi.png"
-                        alt="Messi"
-                    >
-
-                    <div class="watch">
-                        Watch on Instagram
-                    </div>
-
-                </div>
-
-            </a>
-
-        </div>
-
-
-
-        <!-- 04 — NARDO -->
-
-        <div class="video-card">
-
-            <div
-                class="media-box vimeo-video"
-                data-video="1179894863"
-                data-hash="1795eba3d2"
-            >
-
-                <img
-                    class="thumbnail"
-                    src="15-nardo.JPG"
-                    alt="Nardo"
-                >
-
-                <div class="watch">Watch</div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- 05 — CARPET AD -->
-
-        <div class="video-card">
-
-            <div
-                class="media-box vimeo-video"
-                data-video="997631266"
-            >
-
-                <img
-                    class="thumbnail"
-                    src="16-carpet-ad.JPG"
-                    alt="Carpet Ad"
-                >
-
-                <div class="watch">Watch</div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- 06 — NATGEO -->
-
-        <div class="video-card">
-
-            <div
-                class="media-box vimeo-video"
-                data-video="589476491"
-            >
-
-                <img
-                    class="thumbnail"
-                    src="14-natgeo.JPG"
-                    alt="National Geographic"
-                >
-
-                <div class="watch">Watch</div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- 07 — CLIMA -->
-
-        <div class="video-card">
-
-            <div
-                class="media-box vimeo-video"
-                data-video="1032139832"
-                data-hash="005213bd4b"
-            >
-
-                <img
-                    class="thumbnail"
-                    src="17-clima.JPG"
-                    alt="Clima"
-                >
-
-                <div class="watch">Watch</div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- 08 — SAMSUNG -->
-
-        <div class="video-card">
-
-            <div
-                class="media-box vimeo-video"
-                data-video="1117936427"
-                data-hash="70dc504a5e"
-            >
-
-                <img
-                    class="thumbnail"
-                    src="10-samsung.JPG"
-                    alt="Samsung"
-                >
-
-                <div class="watch">Watch</div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- 09 — CARPET COURT -->
-
-        <div class="video-card">
-
-            <div
-                class="media-box vimeo-video"
-                data-video="1023881952"
-            >
-
-                <img
-                    class="thumbnail"
-                    src="04-carpet-court.jpg.JPG"
-                    alt="Carpet Court"
-                >
-
-                <div class="watch">Watch</div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- 10 — KUTLUAY -->
-
-        <div class="video-card">
-
-            <div
-                class="media-box vimeo-video"
-                data-video="1218850577"
-            >
-
-                <img
-                    class="thumbnail"
-                    src="06-kutluay.jpg.JPG"
-                    alt="Ibrahim Kutluay"
-                >
-
-                <div class="watch">Watch</div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- 11 — SISECAM ZIRAAT -->
-
-        <div class="video-card">
-
-            <div
-                class="media-box vimeo-video"
-                data-video="1022820764"
-            >
-
-                <img
-                    class="thumbnail"
-                    src="23-sisecam ziraat.JPG"
-                    alt="Sisecam Ziraat"
-                >
-
-                <div class="watch">Watch</div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- 12 — GTM -->
-
-        <div class="video-card">
-
-            <div
-                class="media-box vimeo-video"
-                data-video="1008728870"
-                data-hash="fa36ac0a4e"
-            >
-
-                <img
-                    class="thumbnail"
-                    src="19-GTM.JPG"
-                    alt="GTM"
-                >
-
-                <div class="watch">Watch</div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- 13 — IPHONE -->
-
-        <div class="video-card">
-
-            <div
-                class="media-box vimeo-video"
-                data-video="396073655"
-                data-hash="1391c69af1"
-            >
-
-                <img
-                    class="thumbnail"
-                    src="11-iphone.JPG"
-                    alt="iPhone"
-                >
-
-                <div class="watch">Watch</div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- 14 — CAP THE TAP -->
-
-        <div class="video-card">
-
-            <div
-                class="media-box vimeo-video"
-                data-video="1118730025"
-            >
-
-                <img
-                    class="thumbnail"
-                    src="13-capthetap.JPG"
-                    alt="Cap The Tap"
-                >
-
-                <div class="watch">Watch</div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- 15 — RED BULL -->
-
-        <div class="video-card">
-
-            <div
-                class="media-box vimeo-video"
-                data-video="512495175"
-            >
-
-                <img
-                    class="thumbnail"
-                    src="02-redbull.jpg.JPG"
-                    alt="Red Bull"
-                >
-
-                <div class="watch">Watch</div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- 16 — BOSTANCI -->
-
-        <div class="video-card">
-
-            <div
-                class="media-box vimeo-video"
-                data-video="1212709223"
-            >
-
-                <img
-                    class="thumbnail"
-                    src="07-bostanci.jpg.JPG"
-                    alt="Murat Bostanci"
-                >
-
-                <div class="watch">Watch</div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- 17 — JOALI -->
-
-        <div class="video-card">
-
-            <div
-                class="media-box vimeo-video"
-                data-video="1180042516"
-            >
-
-                <img
-                    class="thumbnail"
-                    src="12-joali.JPG"
-                    alt="Joali"
-                >
-
-                <div class="watch">Watch</div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- 18 — SAHIKA -->
-
-        <div class="video-card">
-
-            <div
-                class="media-box vimeo-video"
-                data-video="1213508982"
-            >
-
-                <img
-                    class="thumbnail"
-                    src="08-sahika.jpg.JPG"
-                    alt="Sahika Ercumen"
-                >
-
-                <div class="watch">Watch</div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- 19 — LIKA -->
-
-        <div class="video-card">
-
-            <div
-                class="media-box vimeo-video"
-                data-video="1196732175"
-            >
-
-                <img
-                    class="thumbnail"
-                    src="05-lika-behar.jpg.JPG"
-                    alt="Lika Behar"
-                >
-
-                <div class="watch">Watch</div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- 20 — VALENTINO -->
-
-        <div class="video-card">
-
-            <div
-                class="media-box vimeo-video"
-                data-video="1055564502"
-                data-hash="1857bd57c4"
-            >
-
-                <img
-                    class="thumbnail"
-                    src="20-valentino.JPG"
-                    alt="Valentino"
-                >
-
-                <div class="watch">Watch</div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- 21 — SISECAM ORMAN -->
-
-        <div class="video-card">
-
-            <div
-                class="media-box vimeo-video"
-                data-video="1022820406"
-            >
-
-                <img
-                    class="thumbnail"
-                    src="21-sisecam orman.JPG"
-                    alt="Sisecam Orman"
-                >
-
-                <div class="watch">Watch</div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- 22 — SISECAM YASAM -->
-
-        <div class="video-card">
-
-            <div
-                class="media-box vimeo-video"
-                data-video="1233329782"
-                data-hash="69bbb82f3f"
-            >
-
-                <img
-                    class="thumbnail"
-                    src="22-sisecam yasam.JPG"
-                    alt="Sisecam Yasam"
-                >
-
-                <div class="watch">Watch</div>
-
-            </div>
-
-        </div>
-
-
-    </main>
-
-
-
-    <!-- ========================================
-         FOOTER
-    ======================================== -->
-
-    <footer>
-
-        &copy; 2026 people films all rights reserved.
-
-    </footer>
-
-
-
-    <!-- ========================================
-         REEL MODAL
-    ======================================== -->
-
-    <div
-        id="reel-modal"
-        class="reel-modal"
-    >
-
-        <button
-            id="reel-close"
-            class="reel-close"
-            aria-label="Close reel"
-        >
-            ×
-        </button>
-
-
-        <div
-            class="reel-player"
-            id="reel-player"
-        >
-        </div>
-
+    <div class="media-box">
+      <img class="thumbnail" src="messi.png" alt="Messi">
+      <div class="watch">Watch on Instagram</div>
     </div>
 
+  </a>
+</div>
 
 
-    <!-- ========================================
-         JAVASCRIPT
-    ======================================== -->
+<!-- 04 NARDO -->
 
-    <script>
+<div class="video-card">
+  <div class="media-box vimeo-video" data-video="1179894863" data-hash="1795eba3d2">
+    <img class="thumbnail" src="15-nardo.JPG" alt="Nardo">
+    <div class="watch">Watch</div>
+  </div>
+</div>
 
-        /* ========================================
-           GRID VIDEOS
-        ======================================== */
 
-        const videos =
-            document.querySelectorAll(".vimeo-video");
+<!-- 05 CARPET AD -->
 
+<div class="video-card">
+  <div class="media-box vimeo-video" data-video="997631266">
+    <img class="thumbnail" src="16-carpet-ad.JPG" alt="Carpet Ad">
+    <div class="watch">Watch</div>
+  </div>
+</div>
 
-        videos.forEach((video) => {
 
-            video.addEventListener(
-                "click",
-                function () {
+<!-- 06 NATGEO -->
 
-                    const videoID =
-                        this.dataset.video;
+<div class="video-card">
+  <div class="media-box vimeo-video" data-video="589476491">
+    <img class="thumbnail" src="14-natgeo.JPG" alt="National Geographic">
+    <div class="watch">Watch</div>
+  </div>
+</div>
 
-                    const hash =
-                        this.dataset.hash;
 
+<!-- 07 CLIMA -->
 
-                    let parameters =
-                        "autoplay=1" +
-                        "&title=0" +
-                        "&byline=0" +
-                        "&portrait=0";
+<div class="video-card">
+  <div class="media-box vimeo-video" data-video="1032139832" data-hash="005213bd4b">
+    <img class="thumbnail" src="17-clima.JPG" alt="Clima">
+    <div class="watch">Watch</div>
+  </div>
+</div>
 
 
-                    if (hash) {
+<!-- 08 MOLFIX -->
 
-                        parameters =
-                            "h=" +
-                            hash +
-                            "&" +
-                            parameters;
+<div class="video-card">
+  <div class="media-box vimeo-video" data-video="1233983163" data-hash="23a585e2a1">
+    <img class="thumbnail" src="24-molfix.jpg" alt="Molfix">
+    <div class="watch">Watch</div>
+  </div>
+</div>
 
-                    }
 
+<!-- 09 CARPET COURT -->
 
-                    const videoURL =
-                        "https://player.vimeo.com/video/" +
-                        videoID +
-                        "?" +
-                        parameters;
+<div class="video-card">
+  <div class="media-box vimeo-video" data-video="1023881952">
+    <img class="thumbnail" src="04-carpet-court.jpg.JPG" alt="Carpet Court">
+    <div class="watch">Watch</div>
+  </div>
+</div>
 
 
-                    this.innerHTML = `
+<!-- 10 SAMSUNG -->
 
-                        <iframe
-                            src="${videoURL}"
-                            allow="autoplay; fullscreen; picture-in-picture"
-                            allowfullscreen
-                        ></iframe>
+<div class="video-card">
+  <div class="media-box vimeo-video" data-video="1117936427" data-hash="70dc504a5e">
+    <img class="thumbnail" src="10-samsung.JPG" alt="Samsung">
+    <div class="watch">Watch</div>
+  </div>
+</div>
 
-                    `;
 
-                },
-                { once: true }
-            );
+<!-- 11 SISECAM ZIRAAT -->
 
-        });
+<div class="video-card">
+  <div class="media-box vimeo-video" data-video="1022820764">
+    <img class="thumbnail" src="23-sisecam ziraat.JPG" alt="Sisecam Ziraat">
+    <div class="watch">Watch</div>
+  </div>
+</div>
 
 
+<!-- 12 KUTLUAY -->
 
-        /* ========================================
-           REEL MODAL
-        ======================================== */
+<div class="video-card">
+  <div class="media-box vimeo-video" data-video="1218850577">
+    <img class="thumbnail" src="06-kutluay.jpg.JPG" alt="Ibrahim Kutluay">
+    <div class="watch">Watch</div>
+  </div>
+</div>
 
-        const reelButton =
-            document.getElementById("reel-button");
 
-        const reelModal =
-            document.getElementById("reel-modal");
+<!-- 13 GTM -->
 
-        const reelPlayer =
-            document.getElementById("reel-player");
+<div class="video-card">
+  <div class="media-box vimeo-video" data-video="1008728870" data-hash="fa36ac0a4e">
+    <img class="thumbnail" src="19-GTM.JPG" alt="GTM">
+    <div class="watch">Watch</div>
+  </div>
+</div>
 
-        const reelClose =
-            document.getElementById("reel-close");
 
+<!-- 14 IPHONE -->
 
-        function openReel() {
+<div class="video-card">
+  <div class="media-box vimeo-video" data-video="396073655" data-hash="1391c69af1">
+    <img class="thumbnail" src="11-iphone.JPG" alt="iPhone">
+    <div class="watch">Watch</div>
+  </div>
+</div>
 
-            reelPlayer.innerHTML = `
 
-                <iframe
-                    src="https://player.vimeo.com/video/1229475510?h=27cc224175&autoplay=1&title=0&byline=0&portrait=0"
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowfullscreen
-                ></iframe>
+<!-- 15 CAP THE TAP -->
 
-            `;
+<div class="video-card">
+  <div class="media-box vimeo-video" data-video="1118730025">
+    <img class="thumbnail" src="13-capthetap.JPG" alt="Cap The Tap">
+    <div class="watch">Watch</div>
+  </div>
+</div>
 
-            reelModal.classList.add("active");
 
-            document.body.style.overflow = "hidden";
+<!-- 16 RED BULL -->
 
-        }
+<div class="video-card">
+  <div class="media-box vimeo-video" data-video="512495175">
+    <img class="thumbnail" src="02-redbull.jpg.JPG" alt="Red Bull">
+    <div class="watch">Watch</div>
+  </div>
+</div>
 
 
-        function closeReel() {
+<!-- 17 BOSTANCI -->
 
-            reelModal.classList.remove("active");
+<div class="video-card">
+  <div class="media-box vimeo-video" data-video="1212709223">
+    <img class="thumbnail" src="07-bostanci.jpg.JPG" alt="Murat Bostanci">
+    <div class="watch">Watch</div>
+  </div>
+</div>
 
-            reelPlayer.innerHTML = "";
 
-            document.body.style.overflow = "";
+<!-- 18 JOALI -->
 
-        }
+<div class="video-card">
+  <div class="media-box vimeo-video" data-video="1180042516">
+    <img class="thumbnail" src="12-joali.JPG" alt="Joali">
+    <div class="watch">Watch</div>
+  </div>
+</div>
 
 
-        reelButton.addEventListener(
-            "click",
-            function (event) {
+<!-- 19 SAHIKA -->
 
-                event.preventDefault();
+<div class="video-card">
+  <div class="media-box vimeo-video" data-video="1213508982">
+    <img class="thumbnail" src="08-sahika.jpg.JPG" alt="Sahika Ercumen">
+    <div class="watch">Watch</div>
+  </div>
+</div>
 
-                openReel();
 
-            }
-        );
+<!-- 20 LIKA -->
 
+<div class="video-card">
+  <div class="media-box vimeo-video" data-video="1196732175">
+    <img class="thumbnail" src="05-lika-behar.jpg.JPG" alt="Lika Behar">
+    <div class="watch">Watch</div>
+  </div>
+</div>
 
-        reelClose.addEventListener(
-            "click",
-            closeReel
-        );
 
+<!-- 21 VALENTINO -->
 
-        reelModal.addEventListener(
-            "click",
-            function (event) {
+<div class="video-card">
+  <div class="media-box vimeo-video" data-video="1055564502" data-hash="1857bd57c4">
+    <img class="thumbnail" src="20-valentino.JPG" alt="Valentino">
+    <div class="watch">Watch</div>
+  </div>
+</div>
 
-                if (event.target === reelModal) {
-                    closeReel();
-                }
 
-            }
-        );
+<!-- 22 SISECAM ORMAN -->
 
+<div class="video-card">
+  <div class="media-box vimeo-video" data-video="1022820406">
+    <img class="thumbnail" src="21-sisecam orman.JPG" alt="Sisecam Orman">
+    <div class="watch">Watch</div>
+  </div>
+</div>
 
-        document.addEventListener(
-            "keydown",
-            function (event) {
 
-                if (
-                    event.key === "Escape" &&
-                    reelModal.classList.contains("active")
-                ) {
+<!-- 23 SISECAM YASAM -->
 
-                    closeReel();
+<div class="video-card">
+  <div class="media-box vimeo-video" data-video="1233329782" data-hash="69bbb82f3f">
+    <img class="thumbnail" src="22-sisecam yasam.JPG" alt="Sisecam Yasam">
+    <div class="watch">Watch</div>
+  </div>
+</div>
 
-                }
 
-            }
-        );
+</main>
 
-    </script>
 
+<footer>
+  &copy; 2026 people films all rights reserved.
+</footer>
+
+
+<!-- REEL MODAL -->
+
+<div id="reel-modal" class="reel-modal">
+
+  <button id="reel-close" class="reel-close" aria-label="Close reel">
+    ×
+  </button>
+
+  <div class="reel-player" id="reel-player"></div>
+
+</div>
+
+
+<script>
+
+/* GRID VIDEOS */
+
+const videos = document.querySelectorAll(".vimeo-video");
+
+videos.forEach((video) => {
+
+  video.addEventListener("click", function () {
+
+    const videoID = this.dataset.video;
+    const hash = this.dataset.hash;
+
+    let parameters = "autoplay=1&title=0&byline=0&portrait=0";
+
+    if (hash) {
+      parameters = "h=" + hash + "&" + parameters;
+    }
+
+    const videoURL =
+      "https://player.vimeo.com/video/" + videoID + "?" + parameters;
+
+    this.innerHTML = `
+      <iframe
+        src="${videoURL}"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    `;
+
+  }, { once: true });
+
+});
+
+
+/* REEL MODAL */
+
+const reelButton = document.getElementById("reel-button");
+const reelModal = document.getElementById("reel-modal");
+const reelPlayer = document.getElementById("reel-player");
+const reelClose = document.getElementById("reel-close");
+
+
+function openReel() {
+
+  reelPlayer.innerHTML = `
+    <iframe
+      src="https://player.vimeo.com/video/1229475510?h=27cc224175&autoplay=1&title=0&byline=0&portrait=0"
+      allow="autoplay; fullscreen; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  `;
+
+  reelModal.classList.add("active");
+
+  document.body.style.overflow = "hidden";
+
+}
+
+
+function closeReel() {
+
+  reelModal.classList.remove("active");
+
+  reelPlayer.innerHTML = "";
+
+  document.body.style.overflow = "";
+
+}
+
+
+reelButton.addEventListener("click", function(event) {
+
+  event.preventDefault();
+
+  openReel();
+
+});
+
+
+reelClose.addEventListener("click", closeReel);
+
+
+reelModal.addEventListener("click", function(event) {
+
+  if (event.target === reelModal) {
+    closeReel();
+  }
+
+});
+
+
+document.addEventListener("keydown", function(event) {
+
+  if (event.key === "Escape" && reelModal.classList.contains("active")) {
+    closeReel();
+  }
+
+});
+
+</script>
 
 </body>
-
 </html>
