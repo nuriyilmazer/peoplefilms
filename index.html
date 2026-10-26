@@ -398,7 +398,17 @@ footer {
 </div>
 
 
-<!-- 11 SISECAM ZIRAAT -->
+<!-- 11 TRENDYOL -->
+
+<div class="video-card">
+  <div class="media-box youtube-video" data-video="Ocypbs8o3uk">
+    <img class="thumbnail" src="trendyol.jpg" alt="Trendyol">
+    <div class="watch">Watch</div>
+  </div>
+</div>
+
+
+<!-- 12 SISECAM ZIRAAT -->
 
 <div class="video-card">
   <div class="media-box vimeo-video" data-video="1022820764">
@@ -408,7 +418,7 @@ footer {
 </div>
 
 
-<!-- 12 KUTLUAY -->
+<!-- 13 KUTLUAY -->
 
 <div class="video-card">
   <div class="media-box vimeo-video" data-video="1218850577">
@@ -418,7 +428,7 @@ footer {
 </div>
 
 
-<!-- 13 GTM -->
+<!-- 14 GTM -->
 
 <div class="video-card">
   <div class="media-box vimeo-video" data-video="1008728870" data-hash="fa36ac0a4e">
@@ -428,7 +438,7 @@ footer {
 </div>
 
 
-<!-- 14 IPHONE -->
+<!-- 15 IPHONE -->
 
 <div class="video-card">
   <div class="media-box vimeo-video" data-video="396073655" data-hash="1391c69af1">
@@ -438,7 +448,7 @@ footer {
 </div>
 
 
-<!-- 15 CAP THE TAP -->
+<!-- 16 CAP THE TAP -->
 
 <div class="video-card">
   <div class="media-box vimeo-video" data-video="1118730025">
@@ -448,7 +458,7 @@ footer {
 </div>
 
 
-<!-- 16 RED BULL -->
+<!-- 17 RED BULL -->
 
 <div class="video-card">
   <div class="media-box vimeo-video" data-video="512495175">
@@ -458,7 +468,7 @@ footer {
 </div>
 
 
-<!-- 17 BOSTANCI -->
+<!-- 18 BOSTANCI -->
 
 <div class="video-card">
   <div class="media-box vimeo-video" data-video="1212709223">
@@ -468,7 +478,7 @@ footer {
 </div>
 
 
-<!-- 18 JOALI -->
+<!-- 19 JOALI -->
 
 <div class="video-card">
   <div class="media-box vimeo-video" data-video="1180042516">
@@ -478,7 +488,7 @@ footer {
 </div>
 
 
-<!-- 19 SAHIKA -->
+<!-- 20 SAHIKA -->
 
 <div class="video-card">
   <div class="media-box vimeo-video" data-video="1213508982">
@@ -488,7 +498,7 @@ footer {
 </div>
 
 
-<!-- 20 LIKA -->
+<!-- 21 LIKA -->
 
 <div class="video-card">
   <div class="media-box vimeo-video" data-video="1196732175">
@@ -498,7 +508,7 @@ footer {
 </div>
 
 
-<!-- 21 VALENTINO -->
+<!-- 22 VALENTINO -->
 
 <div class="video-card">
   <div class="media-box vimeo-video" data-video="1055564502" data-hash="1857bd57c4">
@@ -508,7 +518,7 @@ footer {
 </div>
 
 
-<!-- 22 SISECAM ORMAN -->
+<!-- 23 SISECAM ORMAN -->
 
 <div class="video-card">
   <div class="media-box vimeo-video" data-video="1022820406">
@@ -518,7 +528,7 @@ footer {
 </div>
 
 
-<!-- 23 SISECAM YASAM -->
+<!-- 24 SISECAM YASAM -->
 
 <div class="video-card">
   <div class="media-box vimeo-video" data-video="1233329782" data-hash="69bbb82f3f">
@@ -551,7 +561,7 @@ footer {
 
 <script>
 
-/* GRID VIDEOS */
+/* GRID VIMEO VIDEOS */
 
 const videos = document.querySelectorAll(".vimeo-video");
 
@@ -575,6 +585,34 @@ videos.forEach((video) => {
       <iframe
         src="${videoURL}"
         allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    `;
+
+  }, { once: true });
+
+});
+
+
+/* GRID YOUTUBE VIDEOS */
+
+const youtubeVideos = document.querySelectorAll(".youtube-video");
+
+youtubeVideos.forEach((video) => {
+
+  video.addEventListener("click", function () {
+
+    const videoID = this.dataset.video;
+
+    const videoURL =
+      "https://www.youtube.com/embed/" + videoID + "?autoplay=1&rel=0";
+
+    this.innerHTML = `
+      <iframe
+        src="${videoURL}"
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
         allowfullscreen>
       </iframe>
     `;
